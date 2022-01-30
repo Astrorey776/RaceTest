@@ -16,27 +16,49 @@ ModulePlayer::~ModulePlayer()
 // Load assets
 bool ModulePlayer::Start()
 {
+	checkpointFx = App->audio->LoadFx("C:/Users/astro/OneDrive/Documentos/GitHub/RaceTest/Game/Assets/checkpoint.wav");
 	LOG("Loading player");
 
-	metaFx = App->audio->LoadFx("Assets/meta.wav");
-	checkpointFx = App->audio->LoadFx("Assets/checkpoint.wav");
 
 	VehicleInfo car;
 
 	// Car properties ----------------------------------------
-	car.chassis_size.Set(2, 2, 4);
-	car.chassis_offset.Set(0, 1.5, 0);
-	car.mass = 500.0f;
-	car.suspensionStiffness = 15.88f;
+	car.chassis_size.Set(3, 1, 3);
+	car.chassis_offset.Set(0, 1, 0);
+
+	car.chassis2_size.Set(1, 3, 1);
+	car.chassis2_offset.Set(0, 1.8, 1);
+
+	car.chassis3_size.Set(1, 1, 3);
+	car.chassis3_offset.Set(2, 1, 1);
+
+	car.chassis4_size.Set(1, 1, 3);
+	car.chassis4_offset.Set(-2, 1, 1);
+	/*
+	car.chassis5_size.Set(7, 1, 3);
+	car.chassis5_offset.Set(0, 1.8, 0);
+
+	car.chassis6_size.Set(7, 1, 3);
+	car.chassis6_offset.Set(0, 1.8, 0);
+
+	car.chassis7_size.Set(7, 1, 3);
+	car.chassis7_offset.Set(0, 1.8, 0);
+
+	car.chassis8_size.Set(7, 1, 3);
+	car.chassis8_offset.Set(0, 1.8, 0);*/
+
+	car.mass = 200.0f;
+	car.suspensionStiffness = 5.88f;
 	car.suspensionCompression = 0.83f;
 	car.suspensionDamping = 0.88f;
 	car.maxSuspensionTravelCm = 1000.0f;
 	car.frictionSlip = 50.5;
 	car.maxSuspensionForce = 6000.0f;
+	
 
 	// Wheel properties ---------------------------------------
 	float connection_height = 1.2f;
-	float wheel_radius = 0.6f;
+	float wheel_radius = 0.7f;
 	float wheel_width = 0.5f;
 	float suspensionRestLength = 1.2f;
 
@@ -164,7 +186,7 @@ void ModulePlayer::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 		if (App->scene_intro->passedCheckpoints == 3)
 		{
 			App->scene_intro->sensor[0].wire = true;
-			App->audio->PlayFx(metaFx);
+			App->audio->PlayFx(checkpointFx);
 			App->scene_intro->passedCheckpoints = 0;
 			App->scene_intro->sensor[1].wire = false;
 		}

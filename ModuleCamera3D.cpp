@@ -63,6 +63,8 @@ update_status ModuleCamera3D::Update(float dt)
 		LookAt(vec3(x_value, 1, z_value));
 	}
 
+
+
 	if (finish == false)
 	{
 		if (App->input->GetKey(SDL_SCANCODE_Y) == KEY_DOWN)
