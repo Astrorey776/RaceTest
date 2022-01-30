@@ -74,6 +74,24 @@ bool ModulePhysics3D::Start()
 
 		CreateBox(5, 160, 44, 46);
 
+		//Ramps-------------------
+		Cube* b = new Cube(10, 0.5, 18);
+		b->SetPos(28, 0, 35);
+		b->SetRotation(-203.0f, { 1,0,0 });
+		App->scene_intro->box.add(b);
+
+		//b->color.Set(40.0f,  25.0f,40.0f);
+
+		App->scene_intro->ramp[0].SetPos(28, 0, 35);
+		App->scene_intro->ramp[0].SetRotation(-10.0f, { 1,0,0 });
+		App->scene_intro->ramp[0].Scale(0.4, 0.1, 0.4);
+		App->scene_intro->ramp[0].size.x = 25;
+		App->scene_intro->ramp[0].size.y = 2;
+		App->scene_intro->ramp[0].size.z = 40;
+		App->scene_intro->ramp[0].axis = false;
+		App->scene_intro->ramp[0].color = White;
+		App->physics->AddBody(App->scene_intro->ramp[0], 0);
+
 	// Big plane as ground
 	{
 		btCollisionShape* colShape = new btStaticPlaneShape(btVector3(0, 1, 0), 0);
@@ -434,15 +452,4 @@ void ModulePhysics3D::CreateBox(float wx, float wz, float x, float z) {
 	AddBody(*v, 0.0f);
 	v->color.Set(0.4f, 0.4f, 0.4f);
 	App->scene_intro->box.add(v);
-}
-
-void ModulePhysics3D::CreateRamp(float wx, float wz, float x, float z,float a) {
-	float height = 6;
-
-	Cube* r = new Cube(wx, height, wz);
-	r->SetPos(x, height / 2, z);
-	AddBody(*r, 0.0f);
-	r->SetRotation(a, { 0,0,1 });
-	App->scene_intro->box.add(r);
-	r->color.Set(height / 40.0f, height / 25.0f, height / 40.0f);
 }

@@ -43,4 +43,6 @@ public:
 	PhysMotor3D* right_wheel;
 
 	p2List<Cube*> box;
+
+	Cube ramp[40];
 };
