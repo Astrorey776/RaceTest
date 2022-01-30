@@ -55,6 +55,20 @@ bool ModulePhysics3D::Start()
 	world->setGravity(GRAVITY);
 	vehicle_raycaster = new btDefaultVehicleRaycaster(world);
 
+	//Outer limits
+	for (int i = 0; i < 20; i++) {
+		CreateBox(10, 25, 250, -250 + 25 * i);
+	}
+	for (int i = 0; i < 20; i++) {
+		CreateBox(10, 25, -260, -250 + 25 * i);
+	}
+	for (int i = 0; i < 20; i++) {
+		CreateBox(25, 10, -250 + 25 * i, 250);
+	}
+	for (int i = 0; i < 20; i++) {
+		CreateBox(25, 10, -250 + 25 * i, -260);
+	}
+
 	// Big plane as ground
 	{
 		btCollisionShape* colShape = new btStaticPlaneShape(btVector3(0, 1, 0), 0);
@@ -394,4 +408,14 @@ void DebugDrawer::setDebugMode(int debugMode)
 int	 DebugDrawer::getDebugMode() const
 {
 	return mode;
+}
+
+void ModulePhysics3D::CreateBox(float wx, float wz, float x, float z) {
+	float height = 15;
+
+	Cube* b = new Cube(wx, height, wz);
+	b->SetPos(x + (wx / 2), height / 2, z + (wz / 2));
+	AddBody(*b, 0.0f);
+	App->scene_intro->box.add(b);
+	b->color.Set(height / 40.0f, height / 25.0f, height / 40.0f);
 }

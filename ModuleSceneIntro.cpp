@@ -38,6 +38,9 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.axis = true;
 	p.Render();
 
+	for (p2List_item<Cube*>* current_building = box.getFirst(); current_building != nullptr; current_building = current_building->next) {
+		current_building->data->Render();
+	}
 	return UPDATE_CONTINUE;
 }
 
