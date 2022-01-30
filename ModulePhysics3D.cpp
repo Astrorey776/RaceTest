@@ -56,18 +56,19 @@ bool ModulePhysics3D::Start()
 	vehicle_raycaster = new btDefaultVehicleRaycaster(world);
 
 	//Circuit
-	for (int i = 0; i < 4; i++) {
-		CreateBox(5, 20, 11,20 * i);
+
+	CreateBox(18, 5, 0, -8);
+
+	for (int i = 0; i < 5; i++) {
+		CreateBox(5, 22, 11,22 * i);
 	}
 	for (int i = 0; i < 4; i++) {
 		CreateBox(5, 20, -11, 20 * i);
 	}
-	for (int i = 0; i < 20; i++) {
-		CreateBox(25, 10, -250 + 25 * i, 250);
-	}
-	for (int i = 0; i < 20; i++) {
-		CreateBox(25, 10, -250 + 25 * i, -260);
-	}
+
+		CreateBox(60, 5, -16, 100);
+		CreateBox(5, 22, -44, 10);
+		CreateBox(60, 5, -16, -35);
 
 	// Big plane as ground
 	{
