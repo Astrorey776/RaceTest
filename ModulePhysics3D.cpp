@@ -55,12 +55,12 @@ bool ModulePhysics3D::Start()
 	world->setGravity(GRAVITY);
 	vehicle_raycaster = new btDefaultVehicleRaycaster(world);
 
-	//Outer limits
-	for (int i = 0; i < 20; i++) {
-		CreateBox(10, 25, 250, -250 + 25 * i);
+	//Circuit
+	for (int i = 0; i < 4; i++) {
+		CreateBox(5, 20, 11,20 * i);
 	}
-	for (int i = 0; i < 20; i++) {
-		CreateBox(10, 25, -260, -250 + 25 * i);
+	for (int i = 0; i < 4; i++) {
+		CreateBox(5, 20, -11, 20 * i);
 	}
 	for (int i = 0; i < 20; i++) {
 		CreateBox(25, 10, -250 + 25 * i, 250);
@@ -411,10 +411,10 @@ int	 DebugDrawer::getDebugMode() const
 }
 
 void ModulePhysics3D::CreateBox(float wx, float wz, float x, float z) {
-	float height = 15;
+	float height = 3;
 
 	Cube* b = new Cube(wx, height, wz);
-	b->SetPos(x + (wx / 2), height / 2, z + (wz / 2));
+	b->SetPos(x , height / 2, z);
 	AddBody(*b, 0.0f);
 	App->scene_intro->box.add(b);
 	b->color.Set(height / 40.0f, height / 25.0f, height / 40.0f);
