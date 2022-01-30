@@ -165,6 +165,17 @@ update_status ModulePlayer::Update(float dt)
 		}
 	}
 
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	{
+
+		if ((timer.Read() * 0.001) >= TIMER)
+		{
+			vehicle->Push(0.0f, FJUMP * 3, 0.0f);
+			timer.Start();
+
+		}
+	}
+
 	if (App->input->GetKey(SDL_SCANCODE_U) == KEY_DOWN) Restart();
 
 	vehicle->ApplyEngineForce(acceleration);
