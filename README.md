@@ -32,6 +32,14 @@
 -When you reach the end of the circuit you win. (Out of order with sensors)
 -When you touch the lava zone you die. (Out of order with sensors)
 
+#Modifications:
+ -Created map
+ -Edited car
+ -Camera programming
+ -Sensors programming
+ -Added audio
+ -Car and wheels physics edited
+
 Enjoy the game!
 
 
