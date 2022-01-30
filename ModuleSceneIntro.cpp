@@ -21,7 +21,7 @@ bool ModuleSceneIntro::Start()
 	App->camera->LookAt(vec3(0, 0, 0));
 
 
-	//Sensor
+	//Win sensor
 
 	sensor[0].SetPos(-45, 1, 112);
 	sensor[0].size.x = 5;

@@ -443,7 +443,7 @@ int	 DebugDrawer::getDebugMode() const
 }
 
 void ModulePhysics3D::CreateBox(float wx, float wz, float x, float z) {
-	float height = 6;
+	float height = 10;
 
 	Cube* b = new Cube(wx, height, wz);
 	b->SetPos(x , height / 2, z);
