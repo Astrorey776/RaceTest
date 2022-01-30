@@ -5,6 +5,7 @@
 #include "Primitive.h"
 
 #define MAX_SNAKE 2
+#define INITIAL_TIME 60
 
 struct PhysBody3D;
 struct PhysMotor3D;
@@ -45,6 +46,8 @@ public:
 	PhysMotor3D* right_wheel;
 
 	p2List<Cube*> box;
+
+	uint timer = INITIAL_TIME;
 
 	Cube sensor[30];
 	Cube ramp[40];

@@ -23,7 +23,7 @@ bool ModuleSceneIntro::Start()
 
 	//Sensor
 
-	sensor[0].SetPos(-28, 1, 112);
+	sensor[0].SetPos(-45, 1, 112);
 	sensor[0].size.x = 5;
 	sensor[0].size.y = 2;
 	sensor[0].size.z = 12;

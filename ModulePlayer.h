@@ -9,7 +9,7 @@ struct PhysVehicle3D;
 #define TURN_DEGREES 15.0f * DEGTORAD
 #define BRAKE_POWER 1000.0f
 #define TIMER 5.0f
-#define FJUMP 300.0f
+#define FJUMP 400.0f
 
 class ModulePlayer : public Module
 {
@@ -31,6 +31,12 @@ public:
 	float turn;
 	float acceleration;
 	float brake;
+	int music;
+	int win;
+	int poscarX;
+	int poscarY;
+	int poscarZ;
+
 	bool slow;
 	int metaFx;
 	int checkpointFx;

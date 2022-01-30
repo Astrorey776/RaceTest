@@ -57,13 +57,15 @@ bool ModulePhysics3D::Start()
 
 	//Circuit
 
+	CreateGround(600, 600, 0, 0);
+
 	    CreateBox(18, 5, 0, -8);
 
 		CreateBox(5, 110, 11,45);
 	
 		CreateBox(5, 80, -11, 30);
 	
-		CreateBox(60, 5, -16, 100);
+		CreateBox(75, 5, -24, 100);
 
 		CreateBox(5, 131, -44, 33);
 
@@ -71,9 +73,9 @@ bool ModulePhysics3D::Start()
 
 		CreateBox(5, 160, 44, 46);
 
-		CreateBox(90, 5, 1, 125);
+		CreateBox(110, 5, -7, 125);
 
-		CreateBox(5, 21, -40, 113);
+		CreateBox(5, 21, -60, 113);
 
 		CreateLava(40, 21, 28, 50);
 
@@ -447,7 +449,7 @@ void ModulePhysics3D::CreateBox(float wx, float wz, float x, float z) {
 	b->SetPos(x , height / 2, z);
 	AddBody(*b, 0.0f);
 	App->scene_intro->box.add(b);
-	b->color.Set(height / 40.0f, height / 25.0f, height / 40.0f);
+	b->color.Set(height / 70.0f, height / 5.0f, height / 40.0f);
 
 	//Vorera
 	Cube* v = new Cube(wx + 4, 0.01f, wz + 4);
@@ -455,6 +457,16 @@ void ModulePhysics3D::CreateBox(float wx, float wz, float x, float z) {
 	AddBody(*v, 0.0f);
 	v->color.Set(0.4f, 0.4f, 0.4f);
 	App->scene_intro->box.add(v);
+}
+
+void ModulePhysics3D::CreateGround(float wx, float wz, float x, float z) {
+	float height = 1;
+
+	Cube* b = new Cube(wx, height, wz);
+	b->SetPos(x, -1, z);
+	AddBody(*b, 0.0f);
+	App->scene_intro->box.add(b);
+	b->color.Set(height / 40.0f, height / 1.0f, height / 1.0f);
 }
 
 void ModulePhysics3D::CreateLava(float wx, float wz, float x, float z) {

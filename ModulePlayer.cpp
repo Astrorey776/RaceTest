@@ -16,10 +16,10 @@ ModulePlayer::~ModulePlayer()
 // Load assets
 bool ModulePlayer::Start()
 {
-	checkpointFx = App->audio->LoadFx("C:/Users/astro/OneDrive/Documentos/GitHub/RaceTest/Game/Assets/checkpoint.wav");
 	LOG("Loading player");
 
-
+	music= App->audio->LoadFx("Assets/Agua.ogg");
+	win = App->audio->LoadFx("Assets/win.ogg");
 	VehicleInfo car;
 
 	// Car properties ----------------------------------------
@@ -127,6 +127,16 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update(float dt)
 {
 	turn = acceleration = brake = 0.0f;
+
+	App->audio->PlayFx(music);
+	
+	poscarX = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getX();
+	poscarY = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getY();
+	poscarZ = App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ();
+
+	if (poscarX <=-50 ) {
+		App->audio->PlayFx(win);
+	}
 
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
