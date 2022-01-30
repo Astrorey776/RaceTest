@@ -34,18 +34,6 @@ bool ModulePlayer::Start()
 
 	car.chassis4_size.Set(1, 1, 3);
 	car.chassis4_offset.Set(-2, 1, 1);
-	/*
-	car.chassis5_size.Set(7, 1, 3);
-	car.chassis5_offset.Set(0, 1.8, 0);
-
-	car.chassis6_size.Set(7, 1, 3);
-	car.chassis6_offset.Set(0, 1.8, 0);
-
-	car.chassis7_size.Set(7, 1, 3);
-	car.chassis7_offset.Set(0, 1.8, 0);
-
-	car.chassis8_size.Set(7, 1, 3);
-	car.chassis8_offset.Set(0, 1.8, 0);*/
 
 	car.mass = 200.0f;
 	car.suspensionStiffness = 5.88f;
@@ -194,7 +182,7 @@ update_status ModulePlayer::Update(float dt)
 
 void ModulePlayer::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
-	if (body2->id == 2)
+	if (body2->id == 2 && App->scene_intro->sensor[0].wire == false)
 	{
 		
 			App->scene_intro->sensor[0].wire = true;
