@@ -154,5 +154,53 @@ update_status ModulePlayer::Update(float dt)
 	return UPDATE_CONTINUE;
 }
 
+void ModulePlayer::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
+{
+	if (body2->id == 2 && App->scene_intro->sensor[0].wire == false)
+	{
+		if (App->scene_intro->passedCheckpoints == 3)
+		{
+			App->scene_intro->sensor[0].wire = true;
+			App->audio->PlayFx(metaFx);
+			App->scene_intro->passedCheckpoints = 0;
+			App->scene_intro->sensor[1].wire = false;
+		}
+	}
+	else if (body2->id == 3 && App->scene_intro->sensor[1].wire == false)
+	{
+		App->audio->PlayFx(checkpointFx);
+		App->scene_intro->passedCheckpoints++;
+		App->scene_intro->sensor[1].wire = true;
+		App->scene_intro->sensor[2].wire = false;
+	}
+	else if (body2->id == 4 && App->scene_intro->sensor[2].wire == false)
+	{
+		App->audio->PlayFx(checkpointFx);
+		App->scene_intro->passedCheckpoints++;
+		App->scene_intro->sensor[2].wire = true;
+		App->scene_intro->sensor[3].wire = false;
+		App->scene_intro->sensor[4].wire = false;
+	}
+	else if (body2->id == 5 && App->scene_intro->sensor[3].wire == false)
+	{
+		App->audio->PlayFx(checkpointFx);
+		App->scene_intro->passedCheckpoints++;
+		App->scene_intro->sensor[3].wire = true;
+		App->scene_intro->sensor[4].wire = true;
+		App->scene_intro->sensor[0].wire = false;
 
+	}
+	else if (body2->id == 6 && App->scene_intro->sensor[4].wire == false)
+	{
+		App->audio->PlayFx(checkpointFx);
+		App->scene_intro->passedCheckpoints++;
+		App->scene_intro->sensor[4].wire = true;
+		App->scene_intro->sensor[3].wire = true;
+		App->scene_intro->sensor[0].wire = false;
+	}
+	else if (body2->id == 8)
+	{
+		slow = true;
+	}
+}
 

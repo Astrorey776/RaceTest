@@ -57,15 +57,12 @@ bool ModulePhysics3D::Start()
 
 	//Circuit
 
-	CreateBox(18, 5, 0, -8);
+	    CreateBox(18, 5, 0, -8);
 
-	for (int i = 0; i < 5; i++) {
-		CreateBox(5, 22, 11,22 * i);
-	}
-	for (int i = 0; i < 4; i++) {
-		CreateBox(5, 20, -11, 20 * i);
-	}
-
+		CreateBox(5, 110, 11,45);
+	
+		CreateBox(5, 80, -11, 30);
+	
 		CreateBox(60, 5, -16, 100);
 
 		CreateBox(5, 131, -44, 33);
@@ -74,13 +71,21 @@ bool ModulePhysics3D::Start()
 
 		CreateBox(5, 160, 44, 46);
 
-		//Ramps-------------------
+		CreateBox(90, 5, 1, 125);
+
+		CreateBox(5, 21, -40, 113);
+
+		CreateLava(40, 21, 28, 50);
+
+		
+
+		//Ramp
 		Cube* b = new Cube(10, 0.5, 18);
 		b->SetPos(28, 0, 35);
 		b->SetRotation(-203.0f, { 1,0,0 });
 		App->scene_intro->box.add(b);
 
-		//b->color.Set(40.0f,  25.0f,40.0f);
+		b->color.Set(40.0f,  0.0f,60.0f);
 
 		App->scene_intro->ramp[0].SetPos(28, 0, 35);
 		App->scene_intro->ramp[0].SetRotation(-10.0f, { 1,0,0 });
@@ -91,6 +96,8 @@ bool ModulePhysics3D::Start()
 		App->scene_intro->ramp[0].axis = false;
 		App->scene_intro->ramp[0].color = White;
 		App->physics->AddBody(App->scene_intro->ramp[0], 0);
+
+
 
 	// Big plane as ground
 	{
@@ -140,10 +147,6 @@ update_status ModulePhysics3D::PreUpdate(float dt)
 					item = item->next;
 				}
 			}
-		}
-		else
-		{
-			App->player->slow = false;
 		}
 	}
 
@@ -452,4 +455,15 @@ void ModulePhysics3D::CreateBox(float wx, float wz, float x, float z) {
 	AddBody(*v, 0.0f);
 	v->color.Set(0.4f, 0.4f, 0.4f);
 	App->scene_intro->box.add(v);
+}
+
+void ModulePhysics3D::CreateLava(float wx, float wz, float x, float z) {
+	float height = 0.2;
+
+	Cube* b = new Cube(wx, height, wz);
+	b->SetPos(x, height / 2, z);
+	AddBody(*b, 0.0f);
+	App->scene_intro->box.add(b);
+	b->color.Set(255.0f, 0.0f,0.0f);
+
 }

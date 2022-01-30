@@ -44,5 +44,7 @@ public:
 
 	p2List<Cube*> box;
 
+	Cube sensor[30];
 	Cube ramp[40];
+	int passedCheckpoints;
 };
