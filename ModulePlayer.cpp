@@ -163,8 +163,21 @@ update_status ModulePlayer::Update(float dt)
 
 	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
-		brake = BRAKE_POWER;
+		if (vehicle->GetKmh() > 0)
+		{
+			brake = BRAKE_POWER / 2;
+		}
+		else
+		{
+			if (slow == true)
+			{
+				vehicle->body->setLinearVelocity(vehicle->body->getLinearVelocity() / 1.03f);
+			}
+			acceleration = -MAX_ACCELERATION;
+		}
 	}
+
+	if (App->input->GetKey(SDL_SCANCODE_U) == KEY_DOWN) Restart();
 
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);
@@ -181,15 +194,14 @@ update_status ModulePlayer::Update(float dt)
 
 void ModulePlayer::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
-	if (body2->id == 2 && App->scene_intro->sensor[0].wire == false)
+	if (body2->id == 2)
 	{
-		if (App->scene_intro->passedCheckpoints == 3)
-		{
+		
 			App->scene_intro->sensor[0].wire = true;
 			App->audio->PlayFx(checkpointFx);
 			App->scene_intro->passedCheckpoints = 0;
 			App->scene_intro->sensor[1].wire = false;
-		}
+		
 	}
 	else if (body2->id == 3 && App->scene_intro->sensor[1].wire == false)
 	{
@@ -227,5 +239,18 @@ void ModulePlayer::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 	{
 		slow = true;
 	}
+}
+
+void ModulePlayer::Restart()
+{
+	acceleration = 0;
+	vehicle->SetPos(0, 1, 0);
+	App->scene_intro->passedCheckpoints = 0;
+	App->scene_intro->sensor[0].wire = true;
+	App->scene_intro->sensor[1].wire = false;
+	App->scene_intro->sensor[2].wire = true;
+	App->scene_intro->sensor[3].wire = true;
+	App->scene_intro->sensor[4].wire = true;
+	vehicle->body->setLinearVelocity(btVector3(0, 0, 0));
 }
 

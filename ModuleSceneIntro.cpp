@@ -28,7 +28,7 @@ bool ModuleSceneIntro::Start()
 	sensor[0].size.y = 2;
 	sensor[0].size.z = 12;
 	sensor[0].axis = false;
-	sensor[0].wire = true;
+	sensor[0].wire = false;
 	sensor[0].color.Set(225, 225, 0);
 	physSensor = App->physics->AddBody(sensor[0], 0);
 	physSensor->SetAsSensor(true);

@@ -80,7 +80,7 @@ bool ModulePhysics3D::Start()
 		
 
 		//Ramp
-		Cube* b = new Cube(10, 0.5, 18);
+		Cube* b = new Cube(10, 0.2, 18);
 		b->SetPos(28, 0, 35);
 		b->SetRotation(-203.0f, { 1,0,0 });
 		App->scene_intro->box.add(b);
