@@ -117,6 +117,10 @@ update_status ModulePlayer::Update(float dt)
 
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
+		if (slow == true)
+		{
+			vehicle->body->setLinearVelocity(vehicle->body->getLinearVelocity() / 1.03f);
+		}
 		acceleration = MAX_ACCELERATION;
 	}
 

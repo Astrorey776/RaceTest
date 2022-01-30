@@ -67,8 +67,12 @@ bool ModulePhysics3D::Start()
 	}
 
 		CreateBox(60, 5, -16, 100);
-		CreateBox(5, 22, -44, 10);
-		CreateBox(60, 5, -16, -35);
+
+		CreateBox(5, 131, -44, 33);
+
+		CreateBox(95, 5, -0, -35);
+
+		CreateBox(5, 160, 44, 46);
 
 	// Big plane as ground
 	{
@@ -118,6 +122,10 @@ update_status ModulePhysics3D::PreUpdate(float dt)
 					item = item->next;
 				}
 			}
+		}
+		else
+		{
+			App->player->slow = false;
 		}
 	}
 
@@ -412,11 +420,29 @@ int	 DebugDrawer::getDebugMode() const
 }
 
 void ModulePhysics3D::CreateBox(float wx, float wz, float x, float z) {
-	float height = 3;
+	float height = 6;
 
 	Cube* b = new Cube(wx, height, wz);
 	b->SetPos(x , height / 2, z);
 	AddBody(*b, 0.0f);
 	App->scene_intro->box.add(b);
 	b->color.Set(height / 40.0f, height / 25.0f, height / 40.0f);
+
+	//Vorera
+	Cube* v = new Cube(wx + 4, 0.01f, wz + 4);
+	v->SetPos(x , 0.3, z );
+	AddBody(*v, 0.0f);
+	v->color.Set(0.4f, 0.4f, 0.4f);
+	App->scene_intro->box.add(v);
+}
+
+void ModulePhysics3D::CreateRamp(float wx, float wz, float x, float z,float a) {
+	float height = 6;
+
+	Cube* r = new Cube(wx, height, wz);
+	r->SetPos(x, height / 2, z);
+	AddBody(*r, 0.0f);
+	r->SetRotation(a, { 0,0,1 });
+	App->scene_intro->box.add(r);
+	r->color.Set(height / 40.0f, height / 25.0f, height / 40.0f);
 }
