@@ -18,6 +18,9 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player");
 
+	metaFx = App->audio->LoadFx("Assets/meta.wav");
+	checkpointFx = App->audio->LoadFx("Assets/checkpoint.wav");
+
 	VehicleInfo car;
 
 	// Car properties ----------------------------------------

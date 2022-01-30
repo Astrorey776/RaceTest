@@ -20,6 +20,18 @@ bool ModuleSceneIntro::Start()
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
 
+	//Sensor------------------------------
+
+	sensor[0].SetPos(44, 0, 213);
+	sensor[0].size.x = 40;
+	sensor[0].size.y = 15;
+	sensor[0].size.z = 1;
+	sensor[0].axis = false;
+	sensor[0].wire = true;
+	sensor[0].color.Set(225, 225, 0);
+	physSensor = App->physics->AddBody(sensor[0], 0);
+	physSensor->SetAsSensor(true);
+	physSensor->SetId(2);
 	return ret;
 }
 
